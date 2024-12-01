@@ -6,7 +6,7 @@ type Cache struct {
 	maxBytes  int64                         //max bytes
 	nbytes    int64                         //used bytes
 	ll        *list.List                    // list
-	cache     map[string]*list.Element      //cache map
+	cache     map[string]*list.Element      //lcache map
 	OnEvicted func(key string, value Value) //remove callback function
 }
 
