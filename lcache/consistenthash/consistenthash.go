@@ -22,13 +22,13 @@ func New(replicas int, hash Hash) *Map {
 		hashMap:  make(map[int]string),
 	}
 	if hash == nil {
-		hash = crc32.ChecksumIEEE
+		m.hash = crc32.ChecksumIEEE
 	}
 	return m
 }
 
-func (m *Map) Add(key ...string) {
-	for _, key := range key {
+func (m *Map) Add(keys ...string) {
+	for _, key := range keys {
 		for i := 0; i < m.replicas; i++ {
 			hash := int(m.hash([]byte(strconv.Itoa(i) + key)))
 			m.keys = append(m.keys, hash)

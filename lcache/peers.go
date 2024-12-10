@@ -1,9 +1,11 @@
 package lcache
 
+import pb "lcache/lcachepb"
+
 type PeerPicker interface {
-	PeerPicker(key string) (PeerGetter, ok bool)
+	PeerPicker(key string) (peer PeerGetter, ok bool)
 }
 
 type PeerGetter interface {
-	Get(group string, key string) ([]byte, error)
+	Get(in *pb.Request, out *pb.Response) error
 }
